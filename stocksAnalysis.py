@@ -49,7 +49,7 @@ class stockTicker():
 
         stock['y'] = stock['Adj. Close']
         stock['Daily Change'] = stock['Adj. Close'] - stock['Adj. Open']
-
+        print(stock.head())
         # Data assigned as class attribute
         self.stock = stock.copy()
 
