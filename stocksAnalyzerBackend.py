@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import fbprophet
 import pytrends
-import sys, os
+
 
 
 from pytrends.request import TrendReq
@@ -30,9 +30,7 @@ class stockTicker():
         self.symbol = ticker
 
         # Use Personal Api Key
-        self.blockPrint()
         quandl.ApiConfig.api_key = input('Please enter your quandl Key: ')
-        self.enablePrint()
         # Retrieval the financial data
         try:
             stock = quandl.get('%s/%s' % (exchange, ticker))
@@ -987,11 +985,3 @@ class stockTicker():
         plt.xticks(results['cps'], results['cps'])
         plt.legend(prop={'size':10})
         plt.show();
-
-    # Disable
-    def blockPrint(self):
-        sys.stdout = open(os.devnull, 'w')
-
-    # Restore
-    def enablePrint(self):
-        sys.stdout = sys.__stdout__
