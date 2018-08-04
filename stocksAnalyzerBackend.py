@@ -5,7 +5,11 @@ import pandas as pd
 import numpy as np
 import fbprophet
 import pytrends
+import sys, os
+
+
 from pytrends.request import TrendReq
+
 
 # matplotlib pyplot for plotting
 import matplotlib.pyplot as plt
@@ -26,8 +30,9 @@ class stockTicker():
         self.symbol = ticker
 
         # Use Personal Api Key
+        blockPrint()
         quandl.ApiConfig.api_key = input('Please enter your quandl Key: ')
-
+        enablePrint()
         # Retrieval the financial data
         try:
             stock = quandl.get('%s/%s' % (exchange, ticker))
@@ -36,11 +41,9 @@ class stockTicker():
             print('Error Retrieving Data.')
             print(e)
             return
-        print(stock.head())
 
         # Set the index to a column called Date
         stock = stock.reset_index(level=0)
-        print(stock.head())
         # Columns required for prophet
         stock['ds'] = stock['Date']
 
@@ -984,3 +987,11 @@ class stockTicker():
         plt.xticks(results['cps'], results['cps'])
         plt.legend(prop={'size':10})
         plt.show();
+
+    # Disable
+    def blockPrint():
+        sys.stdout = open(os.devnull, 'w')
+
+    # Restore
+    def enablePrint():
+        sys.stdout = sys.__stdout__
