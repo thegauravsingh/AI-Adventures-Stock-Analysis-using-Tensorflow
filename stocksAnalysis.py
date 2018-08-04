@@ -14,7 +14,7 @@ import matplotlib
 
 # Class for analyzing and (attempting) to predict future prices
 # Contains a number of visualizations and analysis methods
-class Stocker():
+class stockTicker():
 
     # Initialization requires a ticker symbol
     def __init__(self, ticker, exchange='WIKI'):
