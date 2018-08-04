@@ -14,7 +14,7 @@ import matplotlib
 
 # Class for analyzing and (attempting) to predict future prices
 # Contains a number of visualizations and analysis methods
-class stockTicker():
+class Stocker():
 
     # Initialization requires a ticker symbol
     def __init__(self, ticker, exchange='WIKI'):
@@ -41,17 +41,12 @@ class stockTicker():
         stock = stock.reset_index(level=0)
 
         # Columns required for prophet
-        #if exchange != 'NSE':
         stock['ds'] = stock['Date']
 
         if ('Adj. Close' not in stock.columns):
             stock['Adj. Close'] = stock['Close']
             stock['Adj. Open'] = stock['Open']
 
-        #if ('Adj. Volume' not in stock.columns):
-        #    stock['Adj. Volume'] = stock['Total Trade Quantity']
-        #if exchange == 'NSE':
-        #    stock['y1'] = stock['y']
         stock['y'] = stock['Adj. Close']
         stock['Daily Change'] = stock['Adj. Close'] - stock['Adj. Open']
 
@@ -140,8 +135,8 @@ class stockTicker():
                     valid_end = False
 
                 if start_date.date() < self.min_date.date():
-                    print('Start Date is before date range after : {}'.format(self.min_date.date()))
-                    start_date = pd.to_datetime(input('Enter a new start date'))
+                    print('Start Date is before date range')
+                    start_date = pd.to_datetime(input('Enter a new start date: '))
                     valid_start = False
 
 
