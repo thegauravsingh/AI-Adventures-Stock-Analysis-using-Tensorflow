@@ -41,8 +41,8 @@ class stockTicker():
         stock = stock.reset_index(level=0)
 
         # Columns required for prophet
-        if exchange != 'NSE':
-            stock['ds'] = stock['Date']
+        #if exchange != 'NSE':
+        stock['ds'] = stock['Date']
 
         if ('Adj. Close' not in stock.columns):
             stock['Adj. Close'] = stock['Close']
