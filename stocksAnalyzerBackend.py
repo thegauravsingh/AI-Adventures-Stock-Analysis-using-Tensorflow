@@ -352,7 +352,7 @@ class stockTicker():
 
         # Plot the profits over time
         plt.plot(profits['Date'], profits['hold_profit'], 'b', linewidth = 3)
-        plt.ylabel('Profit ($)'); plt.xlabel('Date'); plt.title('Buy and Hold Profits for {} {} to {}'.format(
+        plt.ylabel('Profit (INR)'); plt.xlabel('Date'); plt.title('Buy and Hold Profits for {} {} to {}'.format(
                                                                 self.symbol, start_date.date(), end_date.date()))
 
         # Display final value on graph
