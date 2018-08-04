@@ -50,8 +50,8 @@ class stockTicker():
 
         if ('Adj. Volume' not in stock.columns):
             stock['Adj. Volume'] = stock['Total Trade Quantity']
-        if exchange == 'NSE':
-            stock['y1'] = stock['y']
+        #if exchange == 'NSE':
+        #    stock['y1'] = stock['y']
         stock['y'] = stock['Adj. Close']
         stock['Daily Change'] = stock['Adj. Close'] - stock['Adj. Open']
 
