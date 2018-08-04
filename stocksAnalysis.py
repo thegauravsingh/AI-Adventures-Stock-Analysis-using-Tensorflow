@@ -37,7 +37,7 @@ class stockTicker():
             print(e)
             return
         print(stock.head())
-    '''
+
         # Set the index to a column called Date
         stock = stock.reset_index(level=0)
         print(stock.head())
@@ -47,6 +47,9 @@ class stockTicker():
         if ('Adj. Close' not in stock.columns):
             stock['Adj. Close'] = stock['Close']
             stock['Adj. Open'] = stock['Open']
+
+        if ('Adj. Volume' not in stock.columns):
+            stock['Adj. Volume'] = stock['Total Trade Quantity']
 
         stock['y'] = stock['Adj. Close']
         stock['Daily Change'] = stock['Adj. Close'] - stock['Adj. Open']
@@ -91,7 +94,6 @@ class stockTicker():
         print('{} Stocker Initialized. Data covers {} to {}.'.format(self.symbol,
                                                                      self.min_date.date(),
                                                                      self.max_date.date()))
-    '''
     """
     Make sure start and end dates are in the range and can be
     converted to pandas datetimes. Returns dates in the correct format
