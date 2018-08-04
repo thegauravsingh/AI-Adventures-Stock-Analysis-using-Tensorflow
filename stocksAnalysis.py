@@ -41,7 +41,7 @@ class stockTicker():
         stock = stock.reset_index(level=0)
 
         # Columns required for prophet
-        if exchange <> 'NSE':
+        if exchange != 'NSE':
             stock['ds'] = stock['Date']
 
         if ('Adj. Close' not in stock.columns):
@@ -141,7 +141,7 @@ class stockTicker():
 
                 if start_date.date() < self.min_date.date():
                     print('Start Date is before date range')
-                    start_date = pd.to_datetime(input('Enter a new start date: '))
+                    start_date = pd.to_datetime(input('Enter a new start date after : {}' self.min_date.date()))
                     valid_start = False
 
 
