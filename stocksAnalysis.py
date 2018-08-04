@@ -140,8 +140,8 @@ class stockTicker():
                     valid_end = False
 
                 if start_date.date() < self.min_date.date():
-                    print('Start Date is before date range')
-                    start_date = pd.to_datetime(input('Enter a new start date after : {}' self.min_date.date()))
+                    print('Start Date is before date range after : {}'.format(self.min_date.date()))
+                    start_date = pd.to_datetime(input('Enter a new start date'))
                     valid_start = False
 
 
