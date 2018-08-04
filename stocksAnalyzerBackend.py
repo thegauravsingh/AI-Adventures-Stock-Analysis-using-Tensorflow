@@ -30,9 +30,9 @@ class stockTicker():
         self.symbol = ticker
 
         # Use Personal Api Key
-        blockPrint()
+        self.blockPrint()
         quandl.ApiConfig.api_key = input('Please enter your quandl Key: ')
-        enablePrint()
+        self.enablePrint()
         # Retrieval the financial data
         try:
             stock = quandl.get('%s/%s' % (exchange, ticker))
@@ -989,9 +989,9 @@ class stockTicker():
         plt.show();
 
     # Disable
-    def blockPrint():
+    def blockPrint(self):
         sys.stdout = open(os.devnull, 'w')
 
     # Restore
-    def enablePrint():
+    def enablePrint(self):
         sys.stdout = sys.__stdout__
