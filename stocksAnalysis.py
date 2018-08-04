@@ -272,7 +272,7 @@ class stockTicker():
             elif plot_type == 'basic':
                 plt.style.use('fivethirtyeight');
                 plt.plot(stock_plot['Date'], stock_plot[stat], color = colors[i], linewidth = 3, label = stat, alpha = 0.8)
-                plt.xlabel('Date'); plt.ylabel('US $'); plt.title('%s Stock History' % self.symbol);
+                plt.xlabel('Date'); plt.ylabel('INR'); plt.title('%s Stock History' % self.symbol);
                 plt.legend(prop={'size':10})
                 plt.grid(color = 'k', alpha = 0.4);
 
@@ -673,7 +673,7 @@ class stockTicker():
                     size = 18);
 
             # Plot formatting
-            plt.ylabel('Profit  (US $)'); plt.xlabel('Date');
+            plt.ylabel('Profit  (INR)'); plt.xlabel('Date');
             plt.title('Predicted versus Buy and Hold Profits');
             plt.legend(loc = 2, prop={'size': 10});
             plt.grid(alpha=0.2);
@@ -891,7 +891,7 @@ class stockTicker():
         # Plot formatting
         plt.legend(loc = 2, prop={'size': 10});
         plt.xticks(rotation = '45')
-        plt.ylabel('Predicted Stock Price (US $)');
+        plt.ylabel('Predicted Stock Price (INR)');
         plt.xlabel('Date'); plt.title('Predictions for %s' % self.symbol);
         plt.show()
 
