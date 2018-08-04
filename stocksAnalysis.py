@@ -36,10 +36,10 @@ class stockTicker():
             print('Error Retrieving Data.')
             print(e)
             return
-
+        print(stock.head())
         # Set the index to a column called Date
         stock = stock.reset_index(level=0)
-
+        print(stock.head())
         # Columns required for prophet
         stock['ds'] = stock['Date']
 
@@ -49,7 +49,7 @@ class stockTicker():
 
         stock['y'] = stock['Adj. Close']
         stock['Daily Change'] = stock['Adj. Close'] - stock['Adj. Open']
-        print(stock.head())
+
         # Data assigned as class attribute
         self.stock = stock.copy()
 
