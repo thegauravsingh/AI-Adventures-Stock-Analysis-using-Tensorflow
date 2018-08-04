@@ -91,8 +91,8 @@ class stockTicker():
         print('{} Stocker Initialized. Data covers {} to {}.'.format(self.symbol,
                                                                      self.min_date.date(),
                                                                      self.max_date.date()))
-        '''
-        """
+    '''
+    """
     Make sure start and end dates are in the range and can be
     converted to pandas datetimes. Returns dates in the correct format
     """
