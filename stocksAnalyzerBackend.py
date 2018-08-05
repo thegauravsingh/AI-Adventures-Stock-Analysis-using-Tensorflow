@@ -515,9 +515,8 @@ class stockTicker():
 
         # Merge predictions with the known values
         test = pd.merge(test, future, on = 'ds', how = 'inner')
-        test = test.copy()
         train = pd.merge(train, future, on = 'ds', how = 'inner')
-        train = train.copy()
+
         # Calculate the differences between consecutive measurements
         test['pred_diff'] = test['yhat'].diff()
         test['real_diff'] = test['y'].diff()
@@ -538,7 +537,7 @@ class stockTicker():
 
         # Calculate percentage of time actual value within prediction range
         test['in_range'] = False
-
+        test = test.copy()
         for i in test.index:
             if (test.iloc[i].loc['y'] < test.iloc[i].loc['yhat_upper']) & (test.iloc[i].loc['y'] > test.iloc[i].loc['yhat_lower']):
                 test.iloc[i].loc['in_range'] = True
