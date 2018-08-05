@@ -726,8 +726,8 @@ class stockTicker():
         for changepoint in (changepoints):
             change_indices.append(train[train['ds'] == changepoint.date()].index[0])
 
-        #c_data = train.iloc[change_indices, :]
-        c_data = train.loc[train.ds == changepoint.date()]
+        c_data = train.iloc[change_indices, :]
+        #c_data = train.loc[train.ds == changepoint.date()]
 
         deltas = model.params['delta'][0]
 
