@@ -541,7 +541,7 @@ class stockTicker():
         #  if (test.iloc[i].loc['y'] < test.iloc[i].loc['yhat_upper']) & (test.iloc[i].loc['y'] > test.iloc[i].loc['yhat_lower']):
         #       test.iloc[i].loc['in_range'] = True
 
-        test.loc[(test.y < test.yhat_upper and test.y > test.yhat_lower)] = True
+        test.loc[(test.y < test.yhat_upper and test.y > test.yhat_lower), 'in_range'] = True
         in_range_accuracy = 100 * np.mean(test['in_range'])
 
         if not nshares:
