@@ -514,10 +514,10 @@ class stockTicker():
         future = model.predict(future)
 
         # Merge predictions with the known values
-        test = pd.merge(test, future, on = 'ds', how = 'inner').copy()
-
-        train = pd.merge(train, future, on = 'ds', how = 'inner').copy()
-
+        test = pd.merge(test, future, on = 'ds', how = 'inner')
+        test = test.copy()
+        train = pd.merge(train, future, on = 'ds', how = 'inner')
+        train = train.copy()
         # Calculate the differences between consecutive measurements
         test['pred_diff'] = test['yhat'].diff()
         test['real_diff'] = test['y'].diff()
