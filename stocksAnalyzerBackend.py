@@ -537,11 +537,11 @@ class stockTicker():
 
         # Calculate percentage of time actual value within prediction range
         test['in_range'] = False
-        test = test.copy()
-        for i in test.index:
-            if (test.iloc[i].loc['y'] < test.iloc[i].loc['yhat_upper']) & (test.iloc[i].loc['y'] > test.iloc[i].loc['yhat_lower']):
-                test.iloc[i].loc['in_range'] = True
+        #for i in test.index:
+        #  if (test.iloc[i].loc['y'] < test.iloc[i].loc['yhat_upper']) & (test.iloc[i].loc['y'] > test.iloc[i].loc['yhat_lower']):
+        #       test.iloc[i].loc['in_range'] = True
 
+        test.loc[(test.y < test.yhat_upper & test.y > test.yhat_lower)] = True
         in_range_accuracy = 100 * np.mean(test['in_range'])
 
         if not nshares:
