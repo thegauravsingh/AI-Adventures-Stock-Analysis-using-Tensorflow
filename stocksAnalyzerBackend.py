@@ -731,7 +731,7 @@ class stockTicker():
 
         deltas = model.params['delta'][0]
 
-        c_data.loc['delta'] = deltas
+        c_data.loc[:,'delta'] = deltas
         c_data['abs_delta'] = abs(c_data['delta'])
 
         # Sort the values by maximum change
