@@ -726,10 +726,12 @@ class stockTicker():
         for changepoint in (changepoints):
             change_indices.append(train[train['ds'] == changepoint.date()].index[0])
 
-        c_data = train.iloc[change_indices, :]
+        #c_data = train.iloc[change_indices, :]
+        c_data = train.loc[train.ds == changepoint.date()]
+
         deltas = model.params['delta'][0]
 
-        c_data['delta'] = deltas
+        c_data.loc['delta'] = deltas
         c_data['abs_delta'] = abs(c_data['delta'])
 
         # Sort the values by maximum change
