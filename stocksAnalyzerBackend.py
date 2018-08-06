@@ -925,7 +925,7 @@ class stockTicker():
         results = pd.DataFrame(0, index = list(range(len(changepoint_priors))),
             columns = ['cps', 'train_err', 'train_range', 'test_err', 'test_range'])
 
-        results.head()
+        print(results.head())
 
         print('\nValidation Range {} to {}.\n'.format(min(test['Date']).date(),
             max(test['Date']).date()))
