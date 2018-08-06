@@ -611,17 +611,17 @@ class stockTicker():
                     prediction_profit.append(nshares * test_pred_increase.loc[test_pred_increase.index[i],'real_diff'])
                 # If we predicted up and the price goes down, we lose the difference
                 else:
-                    prediction_profit.append(nshares * test_pred_increase.loc[i].loc['real_diff'])
+                    prediction_profit.append(nshares * test_pred_increase.loc[test_pred_increase.index[i],'real_diff'])
 
             test_pred_increase['pred_profit'] = prediction_profit
 
             # Put the profit into the test dataframe
             test = pd.merge(test, test_pred_increase[['ds', 'pred_profit']], on = 'ds', how = 'left')
-            test.iloc[0].loc['pred_profit'] = 0
+            test.loc[test.index[0], 'pred_profit'] = 0
 
             # Profit for either method at all dates
             test['pred_profit'] = test['pred_profit'].cumsum().ffill()
-            test['hold_profit'] = nshares * (test['y'] - float(test.iloc[0].loc['y']))
+            test['hold_profit'] = nshares * (test['y'] - float(test.loc[test.index[0],'y']))
 
             # Display information
             print('You played the stock market in {} from {} to {} with {} shares.\n'.format(
@@ -632,7 +632,7 @@ class stockTicker():
 
             # Display some friendly information about the perils of playing the stock market
             print('The total profit using the Prophet model = INR{:.2f}.'.format(np.sum(prediction_profit)))
-            print('The Buy and Hold strategy profit =         INR{:.2f}.'.format(float(test.iloc[len(test) - 1, 'hold_profit'])))
+            print('The Buy and Hold strategy profit =         INR{:.2f}.'.format(float(test.loc[test.index[len(test) - 1], 'hold_profit'])))
             print('\nThanks for playing the stock market!\n')
 
 
@@ -641,11 +641,11 @@ class stockTicker():
             self.reset_plot()
 
             # Final profit and final smart used for locating text
-            final_profit = test.iloc[len(test) - 1].loc['pred_profit']
-            final_smart = test.iloc[len(test) - 1].loc['hold_profit']
+            final_profit = test.loc[test.index[len(test) - 1],'pred_profit']
+            final_smart = test.loc[test.index[len(test) - 1],'hold_profit']
 
             # text location
-            last_date = test.iloc[len(test) - 1].loc['ds']
+            last_date = test.loc[test.index[len(test) - 1],'ds']
             text_location = (last_date - pd.DateOffset(months = 1)).date()
 
             plt.style.use('dark_background')
@@ -925,15 +925,12 @@ class stockTicker():
         results = pd.DataFrame(0, index = list(range(len(changepoint_priors))),
             columns = ['cps', 'train_err', 'train_range', 'test_err', 'test_range'])
 
-        print(results.head())
-
         print('\nValidation Range {} to {}.\n'.format(min(test['Date']).date(),
             max(test['Date']).date()))
 
 
         # Iterate through all the changepoints and make models
         for i, prior in enumerate(changepoint_priors):
-            print(i,prior)
             results.loc[results.index[i],'cps'] = prior
 
             # Select the changepoint
