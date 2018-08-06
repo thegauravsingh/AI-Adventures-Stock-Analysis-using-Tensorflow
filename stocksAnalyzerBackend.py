@@ -72,7 +72,7 @@ class stockTicker():
         self.max_price_date = self.max_price_date[self.max_price_date.index[0]]
 
         # The starting price (starting with the opening price)
-        self.starting_price = float(self.stock.iloc[0].loc['Adj. Open'])
+        self.starting_price = float(self.stock.loc[0].loc['Adj. Open'])
 
         # The most recent price
         self.most_recent_price = float(self.stock.iloc[len(self.stock) - 1].loc['y'])
@@ -608,10 +608,10 @@ class stockTicker():
 
                 # If we predicted up and the price goes up, we gain the difference
                 if correct == 1:
-                    prediction_profit.append(nshares * test_pred_increase.iloc[i].loc['real_diff'])
+                    prediction_profit.append(nshares * test_pred_increase.loc[test_pred_increase.index[i],'real_diff'])
                 # If we predicted up and the price goes down, we lose the difference
                 else:
-                    prediction_profit.append(nshares * test_pred_increase.iloc[i].loc['real_diff'])
+                    prediction_profit.append(nshares * test_pred_increase.loc[i].loc['real_diff'])
 
             test_pred_increase['pred_profit'] = prediction_profit
 
