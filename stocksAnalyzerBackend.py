@@ -933,6 +933,7 @@ class stockTicker():
 
         # Iterate through all the changepoints and make models
         for i, prior in enumerate(changepoint_priors):
+            print(prior)
             results.iloc[i].loc['cps'] = prior
 
             # Select the changepoint
