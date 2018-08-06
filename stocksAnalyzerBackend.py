@@ -933,7 +933,7 @@ class stockTicker():
 
         # Iterate through all the changepoints and make models
         for i, prior in enumerate(changepoint_priors):
-            print(prior)
+            print(i,prior)
             results.loc[results.index[i],'cps'] = prior
 
             # Select the changepoint
@@ -951,16 +951,16 @@ class stockTicker():
             avg_train_error = np.mean(abs(train_results['y'] - train_results['yhat']))
             avg_train_uncertainty = np.mean(abs(train_results['yhat_upper'] - train_results['yhat_lower']))
 
-            results.iloc[i].loc['train_err'] = avg_train_error
-            results.iloc[i].loc['train_range'] = avg_train_uncertainty
+            results.loc[results.index[i],'train_err'] = avg_train_error
+            results.loc[results.index[i],'train_range'] = avg_train_uncertainty
 
             # Testing results and metrics
             test_results = pd.merge(test, future[['ds', 'yhat', 'yhat_upper', 'yhat_lower']], on = 'ds', how = 'inner')
             avg_test_error = np.mean(abs(test_results['y'] - test_results['yhat']))
             avg_test_uncertainty = np.mean(abs(test_results['yhat_upper'] - test_results['yhat_lower']))
 
-            results.iloc[i].loc['test_err'] = avg_test_error
-            results.iloc[i].loc['test_range'] = avg_test_uncertainty
+            results.loc[results.index[i],'test_err'] = avg_test_error
+            results.loc[results.index[i],'test_range'] = avg_test_uncertainty
 
         print(results)
 
