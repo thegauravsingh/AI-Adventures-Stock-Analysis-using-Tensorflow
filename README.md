@@ -9,7 +9,7 @@ Stock Analysis using Tensorflow and  Facebook Prophet.
   MACD (Trend),
   Stochastics (Momentum),
   Average True Range (Volume) 
-3) Do Sentiment Analysis of Google trends for all these stocks and combine polarity data with techical data of stocks
+3) Use Sentiment analysis of News for all these stocks and combine polarity of news data with techical data of stocks
 4) Split TimeLine between Training Validation & Test
 5) Use LSTM (with or with out attention), CNN to do Stock Predictions 
 6) Compare Results with baseline results of Facebook Prophet using plotly.
